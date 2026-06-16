@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #F9FBE7;
+  color: #6b4a4a;
+  font-family: "Mulish", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Falling flowers / leaves shower */
+.petal {
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.95;
+  }
+  90% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(var(--drift, 0), 110vh, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .petal {
+    display: none;
+  }
+}
