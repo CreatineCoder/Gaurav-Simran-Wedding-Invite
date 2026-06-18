@@ -2,6 +2,7 @@ import { wedding } from "../data/wedding";
 import { Reveal, Divider } from "./Section";
 import { Countdown } from "./Countdown";
 import heroBg from "../assets/side_panel_decoration.jpg";
+import ganeshImg from "../assets/ganesh.png";
 
 export function Hero() {
   return (
@@ -13,8 +14,13 @@ export function Hero() {
       />
       <div className="absolute inset-0 bg-[#FAF0E6]/10" />
       <div className="relative z-10 mx-auto max-w-md py-12">
-        <p className="font-serif text-lg italic tracking-wide text-rose">
-          ॥ {wedding.invocation} ॥
+        <img
+          src={ganeshImg}
+          alt="Lord Ganesha"
+          className="mx-auto mb-4 w-24 object-contain sm:w-28"
+        />
+        <p className="whitespace-pre-line font-serif text-lg italic leading-relaxed tracking-wide text-rose">
+          {wedding.invocation}
         </p>
 
         <p className="mx-auto mt-8 max-w-sm font-serif text-base leading-relaxed text-maroon/80">
@@ -22,12 +28,12 @@ export function Hero() {
         </p>
 
         <h1 className="mt-6 font-script text-6xl text-maroon sm:text-7xl">{wedding.groom}</h1>
-        <p className="mt-2 font-serif text-sm text-maroon/70">{wedding.groomParents}</p>
+        <p className="mt-2 whitespace-pre-line font-serif text-sm text-maroon/70">{wedding.groomParents}</p>
 
         <p className="my-4 font-script text-3xl text-maroon/80">with</p>
 
         <h1 className="font-script text-6xl text-maroon sm:text-7xl">{wedding.bride}</h1>
-        <p className="mt-2 font-serif text-sm text-maroon/70">{wedding.brideParents}</p>
+        <p className="mt-2 whitespace-pre-line font-serif text-sm text-maroon/70">{wedding.brideParents}</p>
       </div>
     </section>
   );
@@ -94,6 +100,9 @@ export function Events() {
             const overlayClass = isReception
               ? "items-center justify-center px-8 py-8 text-center"
               : `px-8 py-8 pl-36 ${overlayAlign}`;
+            // Mobile overlay vertical start — push some events further down.
+            const mobileTop =
+              ev.name === "Baraat" || ev.name === "Reception" ? "top-60" : "top-48";
             return (
               <Reveal
                 key={e.name}
@@ -116,19 +125,19 @@ export function Events() {
                   </picture>
 
                   {/* Mobile text overlay — anchored to the top of the portrait image. */}
-                  <div className="absolute inset-x-0 top-0 flex flex-col items-center px-6 pt-8 text-center text-white min-[480px]:hidden">
+                  <div className={`absolute inset-x-0 ${mobileTop} flex flex-col items-center px-6 pt-8 text-center text-white min-[480px]:hidden`}>
                     <h3 className="font-script text-4xl drop-shadow">{ev.name}</h3>
                     {ev.tag && (
-                      <p className="mt-2 max-w-xs font-serif text-sm italic text-white/90 drop-shadow">
+                      <p className="mt-2 max-w-xs font-serif text-lg italic text-white/90 drop-shadow">
                         {ev.tag}
                       </p>
                     )}
-                    <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-serif text-sm drop-shadow">
+                    <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-serif text-lg drop-shadow">
                       {ev.date && <span>{ev.date}</span>}
                       {ev.time && <span>· {ev.time}</span>}
                     </div>
                     {ev.venue && (
-                      <p className="mt-1 font-serif text-sm text-white/90 drop-shadow">{ev.venue}</p>
+                      <p className="mt-1 font-serif text-lg text-white/90 drop-shadow">{ev.venue}</p>
                     )}
                   </div>
 
@@ -214,9 +223,6 @@ export function Families() {
 }
 
 export function Rsvp() {
-  const link = `https://wa.me/${wedding.rsvp.whatsappNumber}?text=${encodeURIComponent(
-    wedding.rsvp.message
-  )}`;
   return (
     <section className="bg-blush/40 px-6 py-20 text-center">
       <Reveal>
@@ -225,14 +231,6 @@ export function Rsvp() {
         <p className="mx-auto mb-8 max-w-md font-serif text-2xl text-maroon/80">
           Your presence is the greatest gift. Kindly let us know if you can make it.
         </p>
-        <a
-          href={link}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-block rounded-full bg-maroon px-8 py-3 font-sans text-white shadow transition hover:bg-rose"
-        >
-          RSVP on WhatsApp
-        </a>
       </Reveal>
     </section>
   );

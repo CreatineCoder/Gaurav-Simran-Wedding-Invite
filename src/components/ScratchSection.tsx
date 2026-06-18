@@ -29,14 +29,11 @@ export function ScratchSection({ onReveal }: { onReveal: () => void }) {
       <Reveal className="flex justify-center">
         <ScratchCard onComplete={handleComplete} width={460} height={220}>
           <div className="px-6">
-            <div className="font-script text-4xl text-maroon">
-              {wedding.monogram.left} &amp; {wedding.monogram.right}
-            </div>
-            <p className="mt-2 font-serif text-xl italic text-maroon/80">
-              You&apos;re invited to celebrate our wedding!
+            <p className="font-serif text-sm uppercase tracking-[0.35em] text-[#8a9a5b]">
+              Save the Date
             </p>
-            <p className="mt-1 font-sans text-sm tracking-wide text-rose">
-              {wedding.dateLabel} 
+            <p className="mt-2 font-script text-5xl text-maroon">
+              {wedding.dateLabel}
             </p>
           </div>
         </ScratchCard>
