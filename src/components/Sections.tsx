@@ -12,15 +12,22 @@ export function Hero() {
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-[#FAF0E6]/10" />
-      <div className="relative z-10">
-        <p className="font-serif tracking-[0.3em] text-maroon/70">WE ARE GETTING MARRIED</p>
-        <h1 className="my-4 font-script text-4xl text-maroon sm:text-5xl sm:text-7xl md:text-8xl">
-          {wedding.groom}
-          <span className="mx-2 text-rose">&amp;</span>
-          {wedding.bride}
-        </h1>
-        <p className="font-serif text-2xl text-maroon/80">{wedding.dateLabel}</p>
-        <p className="mt-1 font-sans text-sm tracking-wide text-rose">{wedding.city}</p>
+      <div className="relative z-10 mx-auto max-w-md py-12">
+        <p className="font-serif text-lg italic tracking-wide text-rose">
+          ॥ {wedding.invocation} ॥
+        </p>
+
+        <p className="mx-auto mt-8 max-w-sm font-serif text-base leading-relaxed text-maroon/80">
+          {wedding.introLine}
+        </p>
+
+        <h1 className="mt-6 font-script text-6xl text-maroon sm:text-7xl">{wedding.groom}</h1>
+        <p className="mt-2 font-serif text-sm text-maroon/70">{wedding.groomParents}</p>
+
+        <p className="my-4 font-script text-3xl text-maroon/80">with</p>
+
+        <h1 className="font-script text-6xl text-maroon sm:text-7xl">{wedding.bride}</h1>
+        <p className="mt-2 font-serif text-sm text-maroon/70">{wedding.brideParents}</p>
       </div>
     </section>
   );
@@ -63,27 +70,104 @@ export function Events() {
 
       <div className="mx-auto flex max-w-[1230px] flex-wrap justify-center gap-6">
         {wedding.events
-          .filter((e) => "image" in e && e.image)
-          .map((e, i) => (
-            <Reveal key={e.name} delay={i * 0.08} className="w-full md:w-[calc(50%-0.75rem)]">
-              <div className="flex h-full items-center justify-center rounded-2xl bg-white/70 p-0 shadow-sm">
-                <picture className="w-full">
-                  {/* Desktop / tablet (≥480px) gets the main image. */}
-                  <source
-                    media="(min-width: 480px)"
-                    srcSet={(e as { image: string }).image}
-                  />
-                  {/* Phones (<480px) get imageMobile if provided, else the main image. */}
-                  <img
-                    src={(e as { imageMobile?: string; image: string }).imageMobile ?? (e as { image: string }).image}
-                    alt={e.name}
-                    loading="lazy"
-                    className="h-auto w-full rounded-2xl object-contain"
-                  />
-                </picture>
-              </div>
-            </Reveal>
-          ))}
+          .filter((e) => ("image" in e && e.image) || ("imageMobile" in e && e.imageMobile))
+          .map((e, i) => {
+            const ev = e as {
+              image?: string;
+              imageMobile?: string;
+              name: string;
+              tag?: string;
+              date?: string;
+              time?: string;
+              venue?: string;
+              overlayPos?: string;
+            };
+            // Events with only a mobile image are hidden on screens ≥480px.
+            const mobileOnly = !ev.image && !!ev.imageMobile;
+            // Shift the overlay toward the upper-right empty space when requested.
+            const overlayAlign =
+              ev.overlayPos === "top-right"
+                ? "items-end justify-start pt-[12%] text-right"
+                : "items-center justify-center text-center";
+            // Reception gets its own overlay positioning, tweak independently here.
+            const isReception = ev.name === "Reception";
+            const overlayClass = isReception
+              ? "items-center justify-center px-8 py-8 text-center"
+              : `px-8 py-8 pl-36 ${overlayAlign}`;
+            return (
+              <Reveal
+                key={e.name}
+                delay={i * 0.08}
+                className={`w-full md:w-[calc(50%-0.75rem)]${mobileOnly ? " min-[480px]:hidden" : ""}`}
+              >
+                <div className="relative flex h-full items-center justify-center overflow-hidden rounded-2xl bg-white/70 p-0 shadow-sm">
+                  <picture className="w-full">
+                    {/* Desktop / tablet (≥480px) gets the main image (if any). */}
+                    {ev.image && (
+                      <source media="(min-width: 480px)" srcSet={ev.image} />
+                    )}
+                    {/* Phones (<480px) get imageMobile if provided, else the main image. */}
+                    <img
+                      src={ev.imageMobile ?? ev.image}
+                      alt={e.name}
+                      loading="lazy"
+                      className="h-auto w-full rounded-2xl object-contain"
+                    />
+                  </picture>
+
+                  {/* Mobile text overlay — anchored to the top of the portrait image. */}
+                  <div className="absolute inset-x-0 top-0 flex flex-col items-center px-6 pt-8 text-center text-white min-[480px]:hidden">
+                    <h3 className="font-script text-4xl drop-shadow">{ev.name}</h3>
+                    {ev.tag && (
+                      <p className="mt-2 max-w-xs font-serif text-sm italic text-white/90 drop-shadow">
+                        {ev.tag}
+                      </p>
+                    )}
+                    <div className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 font-serif text-sm drop-shadow">
+                      {ev.date && <span>{ev.date}</span>}
+                      {ev.time && <span>· {ev.time}</span>}
+                    </div>
+                    {ev.venue && (
+                      <p className="mt-1 font-serif text-sm text-white/90 drop-shadow">{ev.venue}</p>
+                    )}
+                  </div>
+
+                  {/* Web-only text overlay (mobile images already have text baked in). */}
+                  {ev.image && (
+                    <div className={`absolute inset-0 hidden flex-col bg-black/30 text-white min-[480px]:flex ${overlayClass}`}>
+                      <h3 className="font-script text-4xl drop-shadow sm:text-5xl">{ev.name}</h3>
+                      {ev.tag && (
+                        <p className="mt-3 max-w-xs font-serif text-base italic text-white/90 drop-shadow sm:text-lg">
+                          {ev.tag}
+                        </p>  
+                      )}
+                      <div className="my-5 text-xl text-gold drop-shadow">❀</div>
+                      <div className="space-y-4 font-serif">
+                        {ev.date && (
+                          <div>
+                            <p className="text-xs tracking-[0.3em] text-white/80">DATE</p>
+                            <p className="mt-1 text-xl drop-shadow sm:text-2xl">{ev.date}</p>
+                          </div>
+                        )}
+                        {ev.time && (
+                          <div>
+                            <p className="text-xs tracking-[0.3em] text-white/80">TIME</p>
+                            <p className="mt-1 text-xl drop-shadow sm:text-2xl">{ev.time}</p>
+                          </div>
+                        )}
+                        {ev.venue && (
+                          <div>
+                            <p className="text-xs tracking-[0.3em] text-white/80">VENUE</p>
+                            <p className="mt-1 text-lg drop-shadow sm:text-xl">{ev.venue}</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </Reveal>
+            );
+          })}
       </div>
     </section>
   );
@@ -113,13 +197,13 @@ export function Families() {
       </Reveal>
 
       <Reveal className="mx-auto mt-5 max-w-xl rounded-2xl border border-gold/40 px-5 py-10">
-        <p className="font-serif text-xs tracking-[0.25em] text-sagedeep/70">
+        <p className="font-serif text-sm tracking-[0.25em] text-[#7E4343]/80 sm:text-base">
           {wedding.hosts.label.toUpperCase()}
         </p>
         <div className="my-3 text-gold">❀</div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           {wedding.hosts.names.map((name) => (
-            <p key={name} className="font-serif text-lg text-maroon/90">
+            <p key={name} className="font-serif text-2xl text-[#5e2f2f] sm:text-3xl">
               {name}
             </p>
           ))}
@@ -138,7 +222,7 @@ export function Rsvp() {
       <Reveal>
         <h2 className="font-script text-4xl text-maroon sm:text-5xl">Will You Join Us?</h2>
         <Divider />
-        <p className="mx-auto mb-8 max-w-md font-serif text-lg text-maroon/80">
+        <p className="mx-auto mb-8 max-w-md font-serif text-2xl text-maroon/80">
           Your presence is the greatest gift. Kindly let us know if you can make it.
         </p>
         <a
@@ -160,9 +244,8 @@ export function Footer() {
       <div className="font-script text-4xl text-white sm:text-5xl">
         {wedding.monogram.left} &amp; {wedding.monogram.right}
       </div>
-      <p className="mt-4 font-serif text-lg text-white/70">{wedding.families}</p>
-      <p className="mt-2 font-sans text-xs tracking-wide text-white/70">
-        {wedding.dateLabel} · {wedding.city}
+      <p className="mt-4 font-sans text-sm tracking-wide text-white/70">
+        {wedding.dateLabel}
       </p>
     </footer>
   );

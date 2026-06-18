@@ -5,21 +5,30 @@
 // ============================================================
 
 import haldiImg from "../assets/image copy.png";
-import mehendiImg from "../assets/event1.png";
-import sangeetImg from "../assets/image.png";
+import sangeetImg from "../assets/sangeet.png";
+import ReceptionImg from "../assets/reception.png";
 
 // Optional mobile-specific variants. Drop the files in /src/assets and import
 // them here, then reference via `imageMobile` on the matching event below.
 // If an event has no `imageMobile`, its desktop `image` is used everywhere.
-// import haldiImgMobile from "../assets/haldi-mobile.png";
-// import mehendiImgMobile from "../assets/mehendi-mobile.png";
+import haldiImgMobile from "../assets/haldi-mobile.jpg";
+import receptionImgMobile from "../assets/reception-mobile.jpeg";
 import sangeetImgMobile from "../assets/sangeet-mobile.png";
+import bhaatImgMobile from "../assets/bhaat-mobile.jpeg";
+import baratImgMobile from "../assets/Barat-mobile.jpeg";
 
 export const wedding = {
   // --- Couple ---
   groom: "Gaurav",
   bride: "Simran",
   monogram: { left: "G", right: "S" }, // shown in the envelope + footer
+
+  // --- Invitation intro (first page) ---
+  invocation: "Shree Ganeshaya Namah",
+  introLine:
+    "We cordially invite you to witness the beginning of our forever and celebrate the wedding ceremony of",
+  groomParents: "S/o Mr. Sanjay Deshmukh & Mrs. Seema Deshmukh",
+  brideParents: "D/o Mr. Dasharath Yadav & Mrs. Ujjwala Yadav",
 
   // --- Headline date ---
   date: "2026-07-09T19:00:00", // ISO — used for countdown
@@ -36,7 +45,8 @@ export const wedding = {
     {
       name: "Haldi",
       image: haldiImg,
-      // imageMobile: haldiImgMobile,
+      tag: "A joyful morning of haldi, blessings and laughter",
+      imageMobile: haldiImgMobile,
       date: "7 July 2026",
       time: "10:00 AM",
       venue: "Family Residence",
@@ -46,7 +56,7 @@ export const wedding = {
     },
     {
       name: "Mehendi",
-      image: mehendiImg,
+      tag: "An evening of intricate henna, music and mischief",
       date: "7 July 2026",
       time: "4:00 PM",
       venue: "The Garden Lawn",
@@ -57,6 +67,7 @@ export const wedding = {
     {
       name: "Sangeet",
       image: sangeetImg,
+      tag: "A night of song, dance and celebration",
       imageMobile: sangeetImgMobile,
       date: "8 July 2026",
       time: "7:00 PM",
@@ -66,16 +77,32 @@ export const wedding = {
       icon: "🎶",
     },
     {
-      name: "Wedding",
+      name: "Bhaat",
+      tag: "A heartfelt ceremony of family blessings and gifts",
+      imageMobile: bhaatImgMobile,
+      date: "8 July 2026",
+      time: "12:00 PM",
+      venue: "Family Residence",
+      address: "123 Sample Street, Jaipur",
+      mapUrl: "https://maps.google.com/?q=Jaipur",
+      icon: "🎁",
+    },
+    {
+      name: "Baraat",
+      tag: "A grand procession of dhol, dance and joy",
+      imageMobile: baratImgMobile,
       date: "9 July 2026",
-      time: "7:00 PM",
+      time: "6:00 PM",
       venue: "Royal Heritage Palace",
       address: "1 Heritage Marg, Jaipur",
       mapUrl: "https://maps.google.com/?q=Jaipur",
-      icon: "💍",
+      icon: "🐎",
     },
     {
       name: "Reception",
+      image: ReceptionImg,
+      tag: "An elegant evening of dinner, toasts and togetherness",
+      imageMobile: receptionImgMobile,
       date: "10 July 2026",
       time: "8:00 PM",
       venue: "Royal Heritage Palace",
@@ -108,11 +135,11 @@ export const wedding = {
   // --- "The Families" section ---
   hosts: {
     label: "Awaiting Your Gracious Presence",
-    names: ["Mr. Sanjay Deshmukh", "Mrs. Seema Deshmukh"],
+    names: ["Mr. Prem Shankarlal Agrawal", "Mrs. Kavita Prem Agrawal"],
   },
 
   // --- Footer ---
-  families: "With love from the Sharma & Verma families",
+  families: "With love from the Agrawal & Agrawal families",
 };
 
 export type WeddingEvent = (typeof wedding.events)[number];

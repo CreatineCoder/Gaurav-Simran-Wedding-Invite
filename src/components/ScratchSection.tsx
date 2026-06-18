@@ -36,7 +36,7 @@ export function ScratchSection({ onReveal }: { onReveal: () => void }) {
               You&apos;re invited to celebrate our wedding!
             </p>
             <p className="mt-1 font-sans text-sm tracking-wide text-rose">
-              {wedding.dateLabel} · {wedding.city}
+              {wedding.dateLabel} 
             </p>
           </div>
         </ScratchCard>
