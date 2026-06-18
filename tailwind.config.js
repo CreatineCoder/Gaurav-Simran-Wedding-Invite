@@ -10,10 +10,10 @@ export default {
         sage: "#ECCDB4", // tan accent surfaces
         blush: "#F0EDD4", // soft section background
         leaf: "#ECCDB4",
-        rose: "#FEA1A1", // coral accent (small text, dividers)
-        gold: "#E08F7A", // deeper coral for seal / buttons / accents
-        sagedeep: "#9D5757", // deep rose for legible headings/text
-        maroon: "#9D5757", // alias used by headings — deep rose
+        rose: "#F58A8A", // coral accent (small text, dividers)
+        gold: "#D27A63", // deeper coral for seal / buttons / accents
+        sagedeep: "#864545", // deep rose for legible headings/text
+        maroon: "#864545", // alias used by headings — deep rose
       },
       fontFamily: {
         script: ['"Great Vibes"', "cursive"],
