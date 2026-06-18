@@ -32,7 +32,7 @@ export default function App() {
 
   return (
     <>
-      <FallingPetals count={stage === "site" ? 10 : 14} />
+      <FallingPetals count={stage === "site" ? 15 : 21} />
 
       <AnimatePresence>
         {stage === "envelope" && <Envelope onOpen={enterSite} />}

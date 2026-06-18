@@ -74,6 +74,34 @@ export function Events() {
         <Divider />
       </Reveal>
 
+      {/* Text-only ceremony cards (no photo) shown first. */}
+      <div className="mx-auto mb-6 flex max-w-[1230px] flex-wrap justify-center gap-6">
+        {wedding.preEvents.map((p, i) => (
+          <Reveal key={p.name} delay={i * 0.08} className="w-full md:w-[calc(50%-0.75rem)]">
+            <div className="flex h-full flex-col items-center rounded-2xl border border-gold/40 bg-white/80 px-6 py-8 text-center shadow-sm">
+              <div className="text-3xl">{p.icon}</div>
+              <h3 className="mt-3 font-script text-3xl text-maroon sm:text-4xl">{p.name}</h3>
+              <p className="mt-2 max-w-xs font-serif text-base italic text-maroon/70">{p.tag}</p>
+              <div className="my-4 text-gold">❀</div>
+              <div className="space-y-3 font-serif text-maroon/90">
+                <div>
+                  <p className="text-xs tracking-[0.3em] text-rose">DATE</p>
+                  <p className="mt-1 text-lg">{p.date}</p>
+                </div>
+                <div>
+                  <p className="text-xs tracking-[0.3em] text-rose">TIME</p>
+                  <p className="mt-1 text-lg">{p.time}</p>
+                </div>
+                <div>
+                  <p className="text-xs tracking-[0.3em] text-rose">VENUE</p>
+                  <p className="mt-1 text-lg">{p.venue}</p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
       <div className="mx-auto flex max-w-[1230px] flex-wrap justify-center gap-6">
         {wedding.events
           .filter((e) => ("image" in e && e.image) || ("imageMobile" in e && e.imageMobile))
@@ -86,6 +114,7 @@ export function Events() {
               date?: string;
               time?: string;
               venue?: string;
+              note?: string;
               overlayPos?: string;
             };
             // Events with only a mobile image are hidden on screens ≥480px.
@@ -139,6 +168,9 @@ export function Events() {
                     {ev.venue && (
                       <p className="mt-1 font-serif text-lg text-white/90 drop-shadow">{ev.venue}</p>
                     )}
+                    {ev.note && (
+                      <p className="mt-2 font-serif text-lg italic text-white drop-shadow">{ev.note}</p>
+                    )}
                   </div>
 
                   {/* Web-only text overlay (mobile images already have text baked in). */}
@@ -169,6 +201,9 @@ export function Events() {
                             <p className="text-xs tracking-[0.3em] text-white/80">VENUE</p>
                             <p className="mt-1 text-lg drop-shadow sm:text-xl">{ev.venue}</p>
                           </div>
+                        )}
+                        {ev.note && (
+                          <p className="text-lg italic drop-shadow sm:text-xl">{ev.note}</p>
                         )}
                       </div>
                     </div>

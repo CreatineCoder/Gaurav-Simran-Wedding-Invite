@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { wedding } from "../data/wedding";
+import backgroundMusic from "../assets/background_6REMLEtr.mp3";
 
 // Shared audio element for background music. Browsers block autoplay
 // until a user gesture, so the envelope tap calls start().
@@ -8,7 +8,7 @@ export function useMusic() {
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    const audio = new Audio(wedding.musicSrc);
+    const audio = new Audio(backgroundMusic);
     audio.loop = true;
     audio.volume = 0.5;
     audioRef.current = audio;

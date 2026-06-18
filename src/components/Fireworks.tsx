@@ -7,7 +7,7 @@ const COLORS = ["#FEA1A1", "#E08F7A", "#9D5757", "#ECCDB4", "#F6C28B", "#fff3c4"
 // thread). Fires firework-style bursts for ~2.5s, then calls onDone.
 export function Fireworks({ onDone }: { onDone?: () => void }) {
   useEffect(() => {
-    const duration = 4000;
+    const duration = 3000;
     const start = Date.now();
     const end = start + duration;
     let settle = 0;
@@ -15,7 +15,7 @@ export function Fireworks({ onDone }: { onDone?: () => void }) {
     const frame = () => {
       // remaining fraction (1 → 0): bursts thin out so the effect dies slowly
       const remaining = Math.max(0, (end - Date.now()) / duration);
-      const count = Math.ceil(8 * remaining);
+      const count = Math.ceil(2 * remaining);
 
       if (count > 0) {
         confetti({
@@ -49,7 +49,7 @@ export function Fireworks({ onDone }: { onDone?: () => void }) {
 
     // an initial big central pop
     confetti({
-      particleCount: 30,
+      particleCount: 15,
       spread: 100,
       startVelocity: 45,
       origin: { x: 0.5, y: 0.5 },
