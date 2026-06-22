@@ -154,7 +154,7 @@ export function Events() {
                   </picture>
 
                   {/* Mobile text overlay — anchored to the top of the portrait image. */}
-                  <div className={`absolute inset-x-0 ${mobileTop} flex flex-col items-center px-6 pt-8 text-center text-white min-[480px]:hidden`}>
+                  <div className={`absolute inset-x-0 ${mobileTop} -mt-[50px] flex flex-col items-center px-6 pt-8 text-center text-white min-[480px]:hidden`}>
                     <h3 className="font-script text-4xl drop-shadow">{ev.name}</h3>
                     {ev.tag && (
                       <p className="mt-2 max-w-xs font-serif text-lg italic text-white/90 drop-shadow">
