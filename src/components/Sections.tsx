@@ -23,6 +23,24 @@ export function Hero() {
           {wedding.invocation}
         </p>
 
+        {/* Scroll-down cue — below the invocation */}
+        <div className="mt-6 flex animate-bounce flex-col items-center text-maroon/70">
+          <span className="font-serif text-xs tracking-[0.3em]">SCROLL</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="mt-1 h-6 w-6"
+            aria-hidden
+          >
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </div>
+
         <p className="mx-auto mt-8 max-w-sm font-serif text-base leading-relaxed text-maroon/80">
           {wedding.introLine}
         </p>
@@ -34,24 +52,6 @@ export function Hero() {
 
         <h1 className="font-script text-6xl text-maroon sm:text-7xl">{wedding.bride}</h1>
         <p className="mt-2 whitespace-pre-line font-serif text-sm text-maroon/70">{wedding.brideParents}</p>
-      </div>
-
-      {/* Scroll-down cue */}
-      <div className="absolute inset-x-0 bottom-6 z-10 flex animate-bounce flex-col items-center text-maroon/70">
-        <span className="font-serif text-xs tracking-[0.3em]">SCROLL</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="mt-1 h-6 w-6"
-          aria-hidden
-        >
-          <path d="M6 9l6 6 6-6" />
-        </svg>
       </div>
     </section>
   );
