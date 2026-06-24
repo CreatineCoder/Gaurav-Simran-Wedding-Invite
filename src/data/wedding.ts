@@ -26,7 +26,7 @@ export const wedding = {
   monogram: { left: "G", right: "S" }, // shown in the envelope + footer
 
   // --- Invitation intro (first page) ---
-  invocation: "॥ श्री गणेशाय नमः ॥ \n ॥ श्री जीण प्रसन्न ॥ \n ॥ श्री श्याम देवताय नमः ॥",
+  invocation: "॥ श्री गणेशाय नमः ॥ \n ॥ श्री जीण माता प्रसन्न ॥ \n ॥ श्री श्याम देवताय नमः ॥",
   introLine:
     "We cordially invite you to witness the beginning of our forever and celebrate the wedding ceremony of",
   groomParents: "S/o Mr. PremKumar Shankarlalji Agrawal\n& Mrs. Kavita Prem Agrawal",
