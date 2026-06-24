@@ -94,30 +94,72 @@ export function Events() {
 
       {/* Text-only ceremony cards (no photo) shown first. */}
       <div className="mx-auto mb-6 flex max-w-[1230px] flex-wrap justify-center gap-6">
-        {wedding.preEvents.map((p, i) => (
-          <Reveal key={p.name} delay={i * 0.08} className="w-full md:w-[calc(50%-0.75rem)]">
-            <div className="flex h-full flex-col items-center rounded-2xl border border-gold/40 bg-white/80 px-6 py-8 text-center shadow-sm">
-              <div className="text-3xl">{p.icon}</div>
-              <h3 className="mt-3 font-script text-3xl text-maroon sm:text-4xl">{p.name}</h3>
-              <p className="mt-2 max-w-xs font-serif text-base italic text-maroon/70">{p.tag}</p>
-              <div className="my-4 text-gold">❀</div>
-              <div className="space-y-3 font-serif text-maroon/90">
-                <div>
-                  <p className="text-xs tracking-[0.3em] text-rose">DATE</p>
-                  <p className="mt-1 text-lg">{p.date}</p>
+        {wedding.preEvents.map((p, i) => {
+          const pe = p as typeof p & { imageMobile?: string };
+          // Ganesh card: push text below the Ganpati symbol; others stay centered.
+          const isGanesh = p.name.startsWith("Ganesh");
+          const peAlign = isGanesh ? "justify-start pt-[52%]" : "justify-center";
+          return (
+            <Reveal key={p.name} delay={i * 0.08} className="w-full md:w-[calc(50%-0.75rem)]">
+              {/* Mobile: decorative image with text overlay. */}
+              {pe.imageMobile && (
+                <div className="relative overflow-hidden rounded-2xl shadow-sm min-[480px]:hidden">
+                  <img
+                    src={pe.imageMobile}
+                    alt={p.name}
+                    loading="lazy"
+                    className="h-auto w-full rounded-2xl object-contain"
+                  />
+                  <div className={`absolute inset-0 flex flex-col items-center ${peAlign} px-6 text-center ${isGanesh ? "text-[#5e2f2f]" : "text-maroon"}`}>
+                    <h3 className={`drop-shadow-sm ${isGanesh ? "font-serif text-2xl italic" : "font-script text-3xl"}`}>{p.name}</h3>
+                    <p className="mt-2 max-w-[15rem] font-serif text-base italic text-maroon/80 drop-shadow-sm">{p.tag}</p>
+                    <div className="my-3 text-gold">❀</div>
+                    <div className="space-y-2 font-serif">
+                      <div>
+                        <p className={`text-xs tracking-[0.3em] ${isGanesh ? "text-maroon" : "text-rose"}`}>DATE</p>
+                        <p className="text-lg">{p.date}</p>
+                      </div>
+                      <div>
+                        <p className={`text-xs tracking-[0.3em] ${isGanesh ? "text-maroon" : "text-rose"}`}>TIME</p>
+                        <p className="text-lg">{p.time}</p>
+                      </div>
+                      <div>
+                        <p className={`text-xs tracking-[0.3em] ${isGanesh ? "text-maroon" : "text-rose"}`}>VENUE</p>
+                        <p className="whitespace-pre-line text-lg">{p.venue}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs tracking-[0.3em] text-rose">TIME</p>
-                  <p className="mt-1 text-lg">{p.time}</p>
-                </div>
-                <div>
-                  <p className="text-xs tracking-[0.3em] text-rose">VENUE</p>
-                  <p className="mt-1 text-lg">{p.venue}</p>
+              )}
+
+              {/* Desktop (≥480px): text card. Mobile-only events without an image still show this. */}
+              <div
+                className={`h-full flex-col items-center rounded-2xl border border-gold/40 bg-white/80 px-6 py-8 text-center shadow-sm ${
+                  pe.imageMobile ? "hidden min-[480px]:flex" : "flex"
+                }`}
+              >
+                <div className="text-3xl">{p.icon}</div>
+                <h3 className="mt-3 font-script text-3xl text-maroon sm:text-4xl">{p.name}</h3>
+                <p className="mt-2 max-w-xs font-serif text-base italic text-maroon/70">{p.tag}</p>
+                <div className="my-4 text-gold">❀</div>
+                <div className="space-y-3 font-serif text-maroon/90">
+                  <div>
+                    <p className="text-xs tracking-[0.3em] text-rose">DATE</p>
+                    <p className="mt-1 text-lg">{p.date}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs tracking-[0.3em] text-rose">TIME</p>
+                    <p className="mt-1 text-lg">{p.time}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs tracking-[0.3em] text-rose">VENUE</p>
+                    <p className="mt-1 whitespace-pre-line text-lg">{p.venue}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Reveal>
-        ))}
+            </Reveal>
+          );
+        })}
       </div>
 
       <div className="mx-auto flex max-w-[1230px] flex-wrap justify-center gap-6">

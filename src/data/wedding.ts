@@ -16,6 +16,8 @@ import receptionImgMobile from "../assets/reception-mobile.jpeg";
 import sangeetImgMobile from "../assets/sangeet-mobile.png";
 import bhaatImgMobile from "../assets/bhaat-mobile.jpeg";
 import baratImgMobile from "../assets/Barat-mobile.jpeg";
+import ganeshPujaImgMobile from "../assets/ganesh_puja_mobile.jpeg";
+import haldatImgMobile from "../assets/haldat_mobile.jpeg";
 
 export const wedding = {
   // --- Couple ---
@@ -27,7 +29,7 @@ export const wedding = {
   invocation: "॥ श्री गणेशाय नमः ॥ \n ॥ श्री जीण प्रसन्न ॥ \n ॥ श्री श्याम देवताय नमः ॥",
   introLine:
     "We cordially invite you to witness the beginning of our forever and celebrate the wedding ceremony of",
-  groomParents: "S/o Mr. Prem Kumar Shankarlalji Agrawal\n& Mrs. Kavita Prem Agrawal",
+  groomParents: "S/o Mr. PremKumar Shankarlalji Agrawal\n& Mrs. Kavita Prem Agrawal",
   brideParents: "D/o Mr. Manoj ji Biharilalji Agrawal\n& Mrs. Anita Manoj Agrawal",
 
   // --- Headline date ---
@@ -44,6 +46,7 @@ export const wedding = {
   preEvents: [
     {
       name: "Ganesh Pujan & Mangal Path",
+      imageMobile: ganeshPujaImgMobile,
       tag: "Seeking blessings for an auspicious beginning",
       date: "05/07/2026",
       time: "Afternoon 4:30 PM",
@@ -52,10 +55,11 @@ export const wedding = {
     },
     {
       name: "Haldat",
+      imageMobile: haldatImgMobile,
       tag: "A warm gathering steeped in tradition and joy",
       date: "06/07/2026",
       time: "Evening 04:00 PM",
-      venue: "Saptshurngi Apartment, Khamgaon",
+      venue: "Saptshurngi \n    Apartment, Khamgaon",
       icon: "💛",
     },
   ],
