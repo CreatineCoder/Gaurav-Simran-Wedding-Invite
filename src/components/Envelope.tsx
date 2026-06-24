@@ -22,18 +22,27 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
         src={cornerTopRight}
         alt=""
         aria-hidden
-        className="pointer-events-none absolute right-0 top-0 w-[42vw] max-w-[300px] object-contain"
+        className="pointer-events-none absolute right-0 top-0 z-0 w-[42vw] max-w-[300px] object-contain"
       />
       <img
         src={cornerBottomLeft}
         alt=""
         aria-hidden
-        className="pointer-events-none absolute bottom-0 left-0 w-[42vw] max-w-[300px] object-contain"
+        className="pointer-events-none absolute bottom-0 left-0 z-0 w-[42vw] max-w-[300px] object-contain"
       />
+
+      <motion.h1
+        className="relative z-10 mb-8 px-6 text-center font-script text-5xl text-sagedeep sm:mb-12 sm:text-6xl"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+      >
+        Sabhi ne pucha kab ?
+      </motion.h1>
 
       <motion.button
         onClick={onOpen}
-        className="relative flex items-center justify-center"
+        className="relative z-10 flex items-center justify-center"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.97 }}
         initial={{ opacity: 0, y: 20 }}
@@ -67,16 +76,16 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
       </motion.button>
 
       <motion.h1
-        className="mt-8 font-script text-5xl text-sagedeep sm:mt-12 sm:text-6xl"
+        className="relative z-10 mt-8 px-6 text-center font-script text-5xl text-sagedeep sm:mt-12 sm:text-6xl"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
       >
-        You&apos;re Invited
+        Humne kaha ab !!
       </motion.h1>
 
       <motion.p
-        className="mt-2 animate-pulse px-6 text-center font-serif text-base italic tracking-wide text-sagedeep/80 sm:text-lg"
+        className="relative z-10 mt-2 animate-pulse px-6 text-center font-serif text-base italic tracking-wide text-sagedeep/80 sm:text-lg"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}

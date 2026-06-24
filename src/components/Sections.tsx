@@ -253,8 +253,7 @@ export function Families() {
   return (
     <section className="bg-sage px-6 py-16 text-center">
       <Reveal>
-        <p className="font-serif text-xs tracking-[0.3em] text-sagedeep/70">WITH LOVE</p>
-        <h2 className="mt-2 font-script text-4xl text-maroon sm:text-5xl">The Families</h2>
+        <h2 className="mt-2 font-script text-4xl text-maroon sm:text-5xl">With Regards</h2>
         <Divider />
       </Reveal>
 
@@ -276,14 +275,54 @@ export function Families() {
 }
 
 export function Rsvp() {
+  const { name, address } = wedding.venueLocation;
+  const query = encodeURIComponent(`${name}, ${address}`);
+  const embedUrl = `https://maps.google.com/maps?q=${query}&z=15&output=embed`;
+  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${query}`;
+
   return (
     <section className="bg-blush/40 px-6 py-20 text-center">
       <Reveal>
-        <h2 className="font-script text-4xl text-maroon sm:text-5xl">Will You Join Us?</h2>
+        <h2 className="font-script text-4xl text-maroon sm:text-5xl">Venue</h2>
         <Divider />
-        <p className="mx-auto mb-8 max-w-md font-serif text-2xl text-maroon/80">
-          Your presence is the greatest gift. Kindly let us know if you can make it.
+        <p className="mx-auto mb-8 max-w-xl font-serif text-xl text-maroon/80">
+          {name}, {address}
         </p>
+      </Reveal>
+
+      <Reveal className="mx-auto max-w-3xl">
+        <div className="overflow-hidden rounded-2xl border border-gold/40 shadow-sm">
+          <iframe
+            title={`Map to ${name}`}
+            src={embedUrl}
+            className="h-[320px] w-full sm:h-[420px]"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+
+        <a
+          href={directionsUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-maroon px-8 py-3 font-sans text-white shadow transition hover:bg-rose"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-4 w-4"
+            aria-hidden
+          >
+            <line x1="22" y1="2" x2="11" y2="13" />
+            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+          </svg>
+          Get Directions
+        </a>
       </Reveal>
     </section>
   );

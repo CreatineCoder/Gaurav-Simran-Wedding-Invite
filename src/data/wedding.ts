@@ -27,8 +27,8 @@ export const wedding = {
   invocation: "॥ श्री गणेशाय नमः ॥ \n ॥ श्री जीण प्रसन्न ॥ \n ॥ श्री श्याम देवताय नमः ॥",
   introLine:
     "We cordially invite you to witness the beginning of our forever and celebrate the wedding ceremony of",
-  groomParents: "S/o Mr. Prem Shankarlalji Agrawal\n& Mrs. Kavita Prem Agrawal",
-  brideParents: "D/o Mr. Manoj Biharilalji Agrawal\n& Mrs. Anita Manoj Agrawal",
+  groomParents: "S/o Mr. Prem Kumar Shankarlalji Agrawal\n& Mrs. Kavita Prem Agrawal",
+  brideParents: "D/o Mr. Manoj ji Biharilalji Agrawal\n& Mrs. Anita Manoj Agrawal",
 
   // --- Headline date ---
   date: "2026-07-09T19:00:00", // ISO — used for countdown
@@ -150,13 +150,20 @@ export const wedding = {
     message: "Hi! I would love to attend the wedding. RSVP: ",
   },
 
+  // --- Venue location (map card) ---
+  venueLocation: {
+    name: "Shri Hari Lawn",
+    address:
+      "Nandura Rd, near Rayane Car Station, Sutala Bu., Sutala Bk., Maharashtra 444312",
+  },
+
   // --- Music (drop a file at /src/assets/music.mp3) ---
   musicSrc: "/music.mp3",
 
   // --- "The Families" section ---
   hosts: {
     label: "Awaiting Your Gracious Presence",
-    names: ["Mr. Prem Shankarlalji Agrawal", "Mrs. Kavita Prem Agrawal"],
+    names: ["Shri AshokKumar Shankarlalji Agrawal ( Bhut)", "& Agrawal Family "],
   },
 
   // --- Footer ---
